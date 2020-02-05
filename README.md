@@ -9,14 +9,14 @@ plugin = escape_json_plugin.so
 
 logger-req = stdio
 ; json_uri and json_host are json-escaped fields defined in `escape_json_plugin.so`
-log-format = "address":"%(addr)", "host":"%(json_host)", "method":"%(method)", "uri":"%(json_uri)", "protocol":"%(proto)", "resp_size":%(size), "req_body_size":%(cl), "resp_status":%(status), "resp_time":%(secs)"
+log-format = "address":"%(addr)", "host":"%(json_host)", "method":"%(method)", "uri":"%(json_uri)", "protocol":"%(proto)", "resp_size":%(size), "req_body_size":%(cl), "resp_status":%(status), "resp_time":%(secs)
 log-req-encoder = format {"time":"${micros}", "source":"uwsgi-req", ${msg}}
 log-req-encoder = nl
 ```
 
 And a resulting log record:
 ```json
-{"time": 1580765438.767256, "source": "uwsgi-req", "address": "10.132.0.10", "host": "api.velebit.ai", "method": "GET", "uri": "/authorize", "protocol"=>"HTTP/1.0", "resp_size": 120, "req_body_size": 0, "resp_status": 200, "resp_time": 0.000524}
+{"time": 1580765438.767256, "source": "uwsgi-req", "address": "10.132.0.10", "host": "api.velebit.ai", "method": "GET", "uri": "/authorize", "protocol": "HTTP/1.0", "resp_size": 120, "req_body_size": 0, "resp_status": 200, "resp_time": 0.000524}
 ```
 
 Very short official documentation on registering new logchunks, used as a starting point for this code: https://uwsgi-docs.readthedocs.io/en/latest/LogFormat.html
