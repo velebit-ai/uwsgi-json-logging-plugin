@@ -23,11 +23,23 @@
   uwsgi_register_logchunk("json_" #x, uwsgi_lf_json_ ## x, 1)
 
 lf_json(uri, uri)
+lf_json(method, method)
+lf_json(user, remote_user)
+lf_json(addr, remote_addr)
 lf_json(host, host)
+lf_json(proto, protocol)
+lf_json(uagent, user_agent)
+lf_json(referer, referer)
 
 static void register_logchunks() {
   r_logchunk(uri);
+  r_logchunk(method);
+  r_logchunk(user);
+  r_logchunk(addr);
   r_logchunk(host);
+  r_logchunk(proto);
+  r_logchunk(uagent);
+  r_logchunk(referer);
 }
 
 struct uwsgi_plugin escape_json_plugin = {
